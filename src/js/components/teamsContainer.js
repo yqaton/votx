@@ -32,8 +32,6 @@ class Teams extends Component {
   render() {
     const result = this.state.teams.map(t => <TeamCard key={t.id} {...t} />);
 
-    console.log(result);
-
     return <Fragment>{result.length > 0 ? result : 'Loading'}</Fragment>;
   }
 }

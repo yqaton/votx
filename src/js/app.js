@@ -8,6 +8,7 @@ import Teams from './Components/teamsContainer';
 injectGlobal`
   body {
     margin: 0;
+    background-color: black;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
 `;
@@ -27,6 +28,7 @@ const Header = styled.header`
     #3acdea 88%,
     #5581e8 100%
   );
+  max-height: 52px;
 
   i {
     display: block;
@@ -35,13 +37,17 @@ const Header = styled.header`
   }
 `;
 
-const App = () => (
-  <div>
-    <Header>
-      <i>VOTX</i>
-    </Header>
-    <Teams />
-  </div>
-);
+const App = class extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header>
+          <i>VOTX</i>
+        </Header>
+        <Teams nav_height={this.header} />
+      </div>
+    );
+  }
+};
 
 ReactDOM.render(<App />, document.getElementById('app'));
