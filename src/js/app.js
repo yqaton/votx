@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import styled, { injectGlobal } from 'styled-components';
 
-import Teams from './Components/teamsContainer';
+import Teams from './components/teamsContainer';
 
 injectGlobal`
   body {

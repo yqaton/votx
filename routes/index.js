@@ -6,12 +6,13 @@ var TeamModel = require('../db/mongoose').TeamModel;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express' });
 });
 
 /* POST vote */
 router.post('/vote', function(req, res, next) {
-  console.log(req.body)
+    console.log(req.body)
+    return res.send({ status: 'OK'});
 });
 
 router.post('/team', function(req, res) {
