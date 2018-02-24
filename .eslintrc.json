@@ -1,18 +1,18 @@
 {
-    "extends": "airbnb",
-    "parser": "babel-eslint",
-    "env": {
-        "browser": true
-    },
-    "rules": {
-        "strict": 0,
-        "linebreak-style": ["off","windows"],
-        "semi":["error", "never"],
-        "comma-dangle": ["error", "never"],
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "strict": 0,
+    "linebreak-style": ["off", "windows"],
+    // "semi":["error", "never"],
+    "comma-dangle": ["error", "never"],
 
-        "no-unused-vars": ["error", { "varsIgnorePattern": "webpack" }],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "webpack" }],
 
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/prop-types": [1]
-    }
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": [1]
+  }
 }
