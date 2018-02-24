@@ -20,7 +20,7 @@ module.exports = {
         // Проверяем тип файла и назначаем соотв. лоадеры
         test: /\.(js|jsx)$/,
         exclude: /node_modules/, // Кроме нодмоудльс
-        use: ['babel-loader']
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
