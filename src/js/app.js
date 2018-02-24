@@ -1,22 +1,47 @@
-import { h, render } from 'preact'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Card from 'preact-material-components/Card';
-import 'preact-material-components/Card/style.css';
-import 'preact-material-components/Button/style.css';
+import styled, { injectGlobal } from 'styled-components';
 
-const Hello = () => (
-  <div style={{'width': '50%'}}>
-    <Card>
-      <Card.Primary>
-        <Card.Title>Hi</Card.Title>
-        <Card.Subtitle>Let me subtitle</Card.Subtitle>
-      </Card.Primary>
-      <Card.Media className='card-media'></Card.Media>
-      <Card.Actions>
-        <Card.Action>OKAY</Card.Action>
-      </Card.Actions>
-    </Card>
+import Teams from './Components/teamsContainer';
+
+injectGlobal`
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+`;
+
+const Header = styled.header`
+  color: pink;
+  text-align: center;
+  padding-bottom: 10px;
+  background: royalblue;
+  background: linear-gradient(
+    to right,
+    #fc6262 0%,
+    #e0b153 12%,
+    #ceb746 26%,
+    #94f23c 45%,
+    #3ae868 68%,
+    #3acdea 88%,
+    #5581e8 100%
+  );
+
+  i {
+    display: block;
+    background: black;
+    padding: 10px;
+  }
+`;
+
+const App = () => (
+  <div>
+    <Header>
+      <i>VOTX</i>
+    </Header>
+    <Teams />
   </div>
-)
+);
 
-render(<Hello />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

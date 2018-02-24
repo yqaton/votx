@@ -26,43 +26,46 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
-  // Автоматически резолвим js и jsx расширения, 
+  // Автоматически резолвим js и jsx расширения,
   // чтоб писать include './App'
   resolve: {
-    extensions: ['.js','.jsx']
+    extensions: ['.js', '.jsx']
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html')
     }),
-    new webpack.DefinePlugin({"process.env":{"NODE_ENV":JSON.stringify("production")}}),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') }
+    }),
     new UglifyJsPlugin({
-        test: /\.(js|jsx)$/i,
-        uglifyOptions: {
-            compress: {
-                warnings: false,
-                ie8: false,
-                conditionals: true,
-                unused: true,
-                comparisons: true,
-                sequences: true,
-                dead_code: true,
-                evaluate: true,
-                if_return: true,
-                join_vars: true
-            },
-            output: {
-                comments: false
-            }
+      test: /\.(js|jsx)$/i,
+      uglifyOptions: {
+        compress: {
+          warnings: false,
+          ie8: false,
+          conditionals: true,
+          unused: true,
+          comparisons: true,
+          sequences: true,
+          dead_code: true,
+          evaluate: true,
+          if_return: true,
+          join_vars: true
+        },
+        output: {
+          comments: false
         }
+      }
     }),
     new webpack.ProvidePlugin({
-      fetch: "imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch"
+      fetch:
+        'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
     })
   ],
   devServer: {
