@@ -3,13 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start":
-      "./node_modules/.bin/webpack --config ./webpack.prod.config.js && node ./bin/www",
-    "start_dev": "node ./bin/www | npm run front_dev",
+    "start": "./node_modules/.bin/webpack --config ./webpack.prod.config.js && node ./bin/www",
+    "start_dev": "nodemon ./bin/www && npm run front_build",
     "front_build": "./node_modules/.bin/webpack",
     "front_dev": "./node_modules/.bin/webpack --watch",
-    "front_production":
-      "./node_modules/.bin/webpack --config ./webpack.prod.config.js"
+    "front_production": "./node_modules/.bin/webpack --config ./webpack.prod.config.js"
   },
   "main": "src/js/app.js",
   "license": "ISC",

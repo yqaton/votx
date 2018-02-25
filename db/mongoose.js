@@ -1,6 +1,7 @@
 var mongoose    = require('mongoose');
+mongoose.connect('mongodb://localhost/votx');
 
-var db = mongoose.createConnection('mongodb://localhost');
+var db = mongoose.connection;
 
 db.on('error', function (err) {
     console.log('connection error:', err.message);
@@ -37,7 +38,7 @@ var StatVotes = new Schema({
 var SessionModel = mongoose.model('Session', Session);
 var VoterModel = mongoose.model('Voter', Voter);
 var StatModel = mongoose.model('StatVotes', StatVotes);
-var TeamModel = mongoose.model('Team', Team);
+var TeamModel = mongoose.model('TestTeam', Team);
 
 module.exports.SessionModel = SessionModel;
 module.exports.VoterModel = VoterModel;
