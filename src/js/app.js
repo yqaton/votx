@@ -49,6 +49,7 @@ const App = () => (
         <p>Session: Game name</p>
         <Link to="/admin">ADM.</Link>
       </Header>
+      {/* <Route path="/" component={AdminPanel} /> */}
       <Route exact path="/" component={NoIdInput} />
       <Switch>
         <Route exact path="/admin" component={AdminPanel} />
