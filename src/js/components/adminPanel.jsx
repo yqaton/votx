@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import NewTeam from './adminComponents/newTeam';
+
 const AdminLayout = styled.section`
   background-color: white;
   display: flex;
@@ -24,6 +26,7 @@ const AdminPanel = () => (
     <h2>Adminka</h2>
 
     <div>
+      <NewTeam />
       <h4>Создание новой пары</h4>
       <label>Команда 1</label>
       <input type="text" placeholder="Название" />
