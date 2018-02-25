@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/webpack --config ./webpack.prod.config.js && node ./bin/www",
+    "start":
+      "./node_modules/.bin/webpack --config ./webpack.prod.config.js && node ./bin/www",
+    "start_dev": "node ./bin/www | npm run front_dev",
     "front_build": "./node_modules/.bin/webpack",
     "front_dev": "./node_modules/.bin/webpack --watch",
-    "front_production": "./node_modules/.bin/webpack --config ./webpack.prod.config.js"
+    "front_production":
+      "./node_modules/.bin/webpack --config ./webpack.prod.config.js"
   },
   "main": "src/js/app.js",
   "license": "ISC",
@@ -42,6 +45,7 @@
     "pug": "2.0.0-beta11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
     "serve-favicon": "~2.4.5",
     "style-loader": "^0.20.2",
     "styled-components": "^3.1.6",

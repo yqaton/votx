@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styled, { injectGlobal } from 'styled-components';
-
-import Teams from './Components/teamsContainer';
+import Teams from './components/teamsContainer';
+import NoIdInput from './components/noIdInput';
+import AdminPanel from './components/adminPanel';
 
 injectGlobal`
   body {
@@ -14,40 +15,47 @@ injectGlobal`
 `;
 
 const Header = styled.header`
-  color: pink;
-  text-align: center;
-  padding-bottom: 10px;
-  background: royalblue;
-  background: linear-gradient(
-    to right,
-    #fc6262 0%,
-    #e0b153 12%,
-    #ceb746 26%,
-    #94f23c 45%,
-    #3ae868 68%,
-    #3acdea 88%,
-    #5581e8 100%
-  );
-  max-height: 52px;
+  background-color: #3f51b5;
+  height: 70px;
 
-  i {
-    display: block;
-    background: black;
-    padding: 10px;
+  b {
+    display: inline-block;
+    transform: rotate(-90deg);
+    margin-top: 20px;
+    color: pink;
+    position: absolute;
+    top: 5px;
+  }
+
+  p {
+    margin: 0;
+    margin-left: 40px;
+    text-align: center;
+    display: flex;
+    height: 100%;
+    padding-bottom: 0;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
   }
 `;
 
-const App = class extends React.Component {
-  render() {
-    return (
-      <div>
-        <Header>
-          <i>VOTX</i>
-        </Header>
-        <Teams nav_height={this.header} />
-      </div>
-    );
-  }
-};
+const App = () => (
+  <Router basename="/">
+    <Fragment>
+      <Header>
+        <b>VOTX</b>
+        <p>Session: Game name</p>
+        <Link to="/admin">ADM.</Link>
+      </Header>
+      <Route exact path="/" component={NoIdInput} />
+      <Switch>
+        <Route exact path="/admin" component={AdminPanel} />
+        <Route path="/:id" component={Teams} />
+      </Switch>
+    </Fragment>
+  </Router>
+);
 
 ReactDOM.render(<App />, document.getElementById('app'));
