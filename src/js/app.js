@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import styled, { injectGlobal } from 'styled-components';
-import Teams from './components/teamsContainer';
-import NoIdInput from './components/noIdInput';
-import AdminPanel from './components/adminPanel';
+import React, { Component, Fragment } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import styled, { injectGlobal } from "styled-components";
+import Teams from "./components/teamsContainer";
+import NoIdInput from "./components/noIdInput";
+import AdminPanel from "./components/adminPanel";
 
 injectGlobal`
   body {
@@ -49,13 +49,14 @@ const App = () => (
         <p>Session: Game name</p>
         <Link to="/admin">ADM.</Link>
       </Header>
-      <Route exact path="/" component={NoIdInput} />
+      <Route path="/" component={AdminPanel} />
+      {/* <Route exact path="/" component={NoIdInput} />
       <Switch>
         <Route exact path="/admin" component={AdminPanel} />
         <Route path="/:id" component={Teams} />
-      </Switch>
+      </Switch> */}
     </Fragment>
   </Router>
 );
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById("app"));
