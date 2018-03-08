@@ -22,8 +22,9 @@ router.post('/vote', function(req, res, next) {
 });
 
 router.post('/api/team', function(req, res) {
+    console.log(req);
     var team = new TeamModel({
-        name: req.body.name,
+        name: req.body.team_name,
         image_url: req.body.image_url
     });
     return res.send({ status: 'OK', team_id: team._id });
