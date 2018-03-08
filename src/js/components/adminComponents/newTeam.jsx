@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import qs from 'qs';
 import Uploader from './uploader';
 
 import AdminCard from './styledAdminCard';
 
-const NewTeam = class extends React.Component {
+const NewTeam = class extends Component {
   constructor(props) {
     super(props);
 
@@ -23,19 +24,24 @@ const NewTeam = class extends React.Component {
   submitHandler() {
     fetch('/api/team/', {
       method: 'post',
-      body: JSON.stringify({
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      },
+      body: qs.stringify({
         team_name: this.state.nameString,
         image_url: this.state.imageUrl
       })
     })
-      .then(res => console.log(res))
+      .then((res) => {
+        if (res.status == 'ok') {
+          this.setState({
+            imageLoaded: false,
+            nameString: '',
+            imageUrl: ''
+          });
+        }
+      })
       .catch(rej => console.error(rej));
-
-    this.setState({
-      imageLoaded: false,
-      nameString: '',
-      imageUrl: ''
-    });
   }
 
   render() {
