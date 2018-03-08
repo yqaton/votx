@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { MemoryRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styled, { injectGlobal } from 'styled-components';
 import Teams from './components/teamsContainer';
 import NoIdInput from './components/noIdInput';
@@ -9,7 +9,7 @@ import AdminPanel from './components/adminPanel';
 injectGlobal`
   body {
     margin: 0;
-    background-color: black;
+    background-color: white;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
 `;
@@ -45,14 +45,16 @@ const App = () => (
   <Router basename="/">
     <Fragment>
       <Header>
-        <b>VOTX</b>
+        <Link to="/">
+          <b>VOTX</b>
+        </Link>
         <p>Session: Game name</p>
         <Link to="/admin">ADM.</Link>
       </Header>
       {/* <Route path="/" component={AdminPanel} /> */}
       <Route exact path="/" component={NoIdInput} />
       <Switch>
-        <Route exact path="/admin" component={AdminPanel} />
+        <Route path="/admin" component={AdminPanel} />
         <Route path="/:id" component={Teams} />
       </Switch>
     </Fragment>

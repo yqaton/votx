@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import qs from 'qs';
 import Uploader from './uploader';
+import AdminCard from '../styled/adminCard';
 
-import AdminCard from './styledAdminCard';
-
-const NewTeam = class extends Component {
+const Teams = class extends Component {
   constructor(props) {
     super(props);
 
@@ -81,4 +80,4 @@ const NewTeam = class extends Component {
   }
 };
 
-export default NewTeam;
+export default Teams;

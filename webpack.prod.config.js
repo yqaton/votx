@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const paths = {
@@ -46,6 +47,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html')
     }),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.SRC, 'index.pug'),
+      filetype: 'pug'
+    }),
+    new HtmlWebpackPugPlugin(),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') }
     }),

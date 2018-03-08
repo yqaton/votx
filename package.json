@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/webpack --config ./webpack.prod.config.js && node ./bin/www",
-    "start_dev": "VOTXDBNAME=votxtest nodemon ./bin/www && npm run front_build",
+    "start_dev": "node ./bin/www | npm run front_dev",
     "front_build": "./node_modules/.bin/webpack",
-    "front_dev": "./node_modules/.bin/webpack --watch",
+    "front_dev": "./node_modules/.bin/webpack-dev-server",
     "front_production": "./node_modules/.bin/webpack --config ./webpack.prod.config.js"
   },
   "main": "src/js/app.js",
@@ -26,6 +26,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "html-webpack-plugin": "^2.30.1",
+    "html-webpack-pug-plugin": "^0.3.0",
     "nodemon": "^1.15.1",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.7.2",

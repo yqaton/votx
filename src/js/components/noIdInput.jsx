@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import { colours } from '../utils/colours';
 
 const SessionInputCard = styled.section`
   display: flex;
   height: 50vh;
   justify-content: center;
-  color: white;
+  color: black;
   place-content: center;
   flex-direction: column;
   align-items: center;
@@ -14,7 +15,7 @@ const SessionInputCard = styled.section`
   button {
     margin: 20px;
     background: transparent;
-    color: pink;
+    color: ${colours.pink};
     padding: 15px;
     outline: none;
     border: 5px solid;
@@ -63,7 +64,10 @@ class NoIdInput extends Component {
   changeHandler(e) {
     this.setState({ session_id: e.target.value });
 
-    if (e.target.value.length >= 4 && e.target.value.toLowerCase() != 'admin') {
+    if (
+      e.target.value.length >= 4 &&
+      e.target.value.toLowerCase() !== 'admin'
+    ) {
       this.setState({ canSubmit: true });
     } else {
       this.setState({ canSubmit: false });

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -40,7 +41,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html')
-    })
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(paths.SRC, 'index.pug'),
+      filetype: 'pug'
+    }),
+    new HtmlWebpackPugPlugin()
   ],
   devtool: 'eval-source-map',
   devServer: {
