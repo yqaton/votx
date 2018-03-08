@@ -1,5 +1,6 @@
 var mongoose    = require('mongoose');
-mongoose.connect('mongodb://localhost/votx');
+var dbname = process.env.VOTXDBNAME || 'votx';
+mongoose.connect('mongodb://localhost/' + dbname );
 
 var db = mongoose.connection;
 
