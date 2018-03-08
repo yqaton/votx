@@ -1,14 +1,14 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
   SRC: path.resolve(__dirname, 'src'),
   JS: path.resolve(__dirname, 'src/js')
-}
+};
 
 module.exports = {
-  entry: path.join(paths.JS, 'app.js'),
+  entry: path.join(paths.JS, 'app.jsx'),
   output: {
     path: paths.DIST,
     filename: 'bundle.js'
@@ -16,6 +16,8 @@ module.exports = {
   // Что делаем с каждый найденным модулем
   module: {
     rules: [
+      // { test: /\.(t|j)sx?$/, use: { loader: 'awesome-typescript-loader' } },
+      // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
       {
         // Проверяем тип файла и назначаем соотв. лоадеры
         test: /\.(js|jsx)$/,
@@ -24,14 +26,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
-  // Автоматически резолвим js и jsx расширения, 
+  // Автоматически резолвим js и jsx расширения,
   // чтоб писать include './App'
   resolve: {
-    extensions: ['.js','.jsx']
+    // changed from extensions: [".js", ".jsx"]
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
 
   plugins: [
@@ -39,8 +42,11 @@ module.exports = {
       template: path.join(paths.SRC, 'index.html')
     })
   ],
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   devServer: {
-    contentBase: paths.SRC
+    contentBase: path.join(__dirname, 'dist'),
+    watchContentBase: true,
+    compress: true,
+    port: 9000
   }
-}
+};

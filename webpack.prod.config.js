@@ -1,16 +1,16 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
   SRC: path.resolve(__dirname, 'src'),
   JS: path.resolve(__dirname, 'src/js')
-}
+};
 
 module.exports = {
-  entry: path.join(paths.JS, 'app.js'),
+  entry: path.join(paths.JS, 'app.jsx'),
   output: {
     path: paths.DIST,
     filename: 'bundle.js'
@@ -18,6 +18,8 @@ module.exports = {
   // Что делаем с каждый найденным модулем
   module: {
     rules: [
+      // { test: /\.(t|j)sx?$/, use: { loader: 'awesome-typescript-loader' } },
+      // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
       {
         // Проверяем тип файла и назначаем соотв. лоадеры
         test: /\.(js|jsx)$/,
@@ -34,6 +36,10 @@ module.exports = {
   // чтоб писать include './App'
   resolve: {
     extensions: ['.js', '.jsx']
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
   },
 
   plugins: [
@@ -71,4 +77,4 @@ module.exports = {
   devServer: {
     contentBase: paths.SRC
   }
-}
+};
