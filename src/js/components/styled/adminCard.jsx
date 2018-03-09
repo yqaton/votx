@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const adminCard = styled.section`
-  border-bottom: 5px solid royalblue;
   padding-bottom: 10px;
 
   button {
@@ -21,6 +20,12 @@ const adminCard = styled.section`
 
   .uploadcare--widget {
     width: 100%;
+
+    button {
+      &:hover {
+        font-size: 18px;
+      }
+    }
   }
 `;
 

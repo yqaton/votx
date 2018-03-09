@@ -65,7 +65,7 @@ const Teams = class extends Component {
           }}
           onUploadComplete={info => this.setState({ imageUrl: info.cdnUrl })}
         />
-        {console.log(this.state)}
+
         <button
           type="button"
           disabled={
