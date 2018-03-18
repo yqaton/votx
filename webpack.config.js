@@ -9,7 +9,7 @@ const paths = {
 };
 
 module.exports = {
-  entry: path.join(paths.JS, 'app.jsx'),
+  entry: path.join(paths.JS, 'app.tsx'),
   output: {
     path: paths.DIST,
     filename: 'bundle.js'
@@ -17,14 +17,7 @@ module.exports = {
   // Что делаем с каждый найденным модулем
   module: {
     rules: [
-      // { test: /\.(t|j)sx?$/, use: { loader: 'awesome-typescript-loader' } },
-      // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
-      {
-        // Проверяем тип файла и назначаем соотв. лоадеры
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/, // Кроме нодмоудльс
-        loader: 'babel-loader'
-      },
+      { test: /\.(t|j)sx?$/, use: { loader: 'awesome-typescript-loader' } },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']

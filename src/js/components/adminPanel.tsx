@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Route, Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Route, Link } from "react-router-dom";
 
-import Teams from './adminComponents/teamsCard';
-import Sessions from './adminComponents/sessionsCard';
-import Rounds from './adminComponents/roundsCard';
-import Viewers from './adminComponents/viewersCard';
-import Button from './styled/buttton';
+import Teams from "./adminComponents/teamsCard";
+import Sessions from "./adminComponents/sessionsCard";
+import Rounds from "./adminComponents/roundsCard";
+import Viewers from "./adminComponents/viewersCard";
+import Button from "./styled/buttton";
 
 const AdminLayout = styled.section`
   background-color: white;
@@ -23,6 +23,11 @@ const AdminLayout = styled.section`
 
   div {
     margin: 20px 0;
+  }
+
+  .componentHolder {
+    width: 80%;
+    max-width: 400px;
   }
 `;
 
@@ -43,7 +48,7 @@ const AdminPanel = () => (
         <Link to="/admin/viewers">Зрители</Link>
       </Button>
     </div>
-    <div>
+    <div className="componentHolder">
       <Route path="/admin/team" component={Teams} />
       <Route path="/admin/session" component={Sessions} />
       <Route path="/admin/round" component={Rounds} />

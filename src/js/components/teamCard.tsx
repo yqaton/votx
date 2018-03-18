@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
+import styledComponentsTS from "styled-components-ts";
 
-import { get_random_colour } from '../utils/colours';
+import { get_random_colour } from "../utils/colours";
 
-const CardHolder = styled.section`
+type CardHolderProps = {
+  avatar: string;
+};
+
+const CardHolder = styled("section")`
   width: 100%;
   height: ${(window.innerHeight - 70) / 2}px;
-  background-image: url(${props => props.avatar});
+  background-image: url(${(props: CardHolderProps) => props.avatar});
   background-position: center;
   background-size: cover;
   display: flex;
@@ -26,8 +31,18 @@ const Heading = styled.h1`
   padding: 5px;
 `;
 
-const TeamCard = class extends React.Component {
-  constructor(props) {
+export interface ITeam {
+  key?: number;
+  avatar: string;
+  first_name: string;
+  id: number;
+  votes: number;
+  canVote: boolean;
+  voteHandler: () => void;
+}
+
+class TeamCard extends React.Component<ITeam, { canVote: boolean }> {
+  constructor(props: ITeam) {
     super(props);
 
     this.state = {
@@ -35,21 +50,18 @@ const TeamCard = class extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: ITeam) {
     this.setState({ canVote: nextProps.canVote });
   }
 
-  clickHandler(id) {
-    console.log(id);
+  clickHandler(id: Number) {
     if (this.state.canVote == false) return;
     this.setState({ canVote: false });
     this.props.voteHandler();
   }
 
   render() {
-    const {
- avatar, first_name, id, votes = 1 
-} = this.props;
+    const { avatar, first_name, id, votes = 1 } = this.props;
 
     return (
       <CardHolder
@@ -68,6 +80,6 @@ const TeamCard = class extends React.Component {
       </CardHolder>
     );
   }
-};
+}
 
 export default TeamCard;

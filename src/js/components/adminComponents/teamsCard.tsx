@@ -1,44 +1,49 @@
-import React, { Component } from 'react';
-import qs from 'qs';
-import Uploader from './uploader';
-import AdminCard from '../styled/adminCard';
+import React, { Component, FormEvent } from "react";
+import qs from "qs";
+import Uploader from "./uploader";
+import AdminCard from "../styled/adminCard";
+import { ResolveOptions } from "dns";
 
-const Teams = class extends Component {
+interface IState {
+  imageLoaded: boolean;
+  nameString: string;
+  imageUrl: string;
+}
+
+const Teams = class extends Component<{}, IState> {
   constructor(props) {
     super(props);
 
     this.state = {
       imageLoaded: false,
-      nameString: '',
-      imageUrl: ''
+      nameString: "",
+      imageUrl: ""
     };
 
     this.submitHandler = this.submitHandler.bind(this);
   }
 
-  changeHandler(e) {
-    this.setState({ nameString: e.target.value });
+  changeHandler(e: FormEvent<HTMLInputElement>): void {
+    this.setState({ nameString: (e.target as HTMLInputElement).value });
   }
 
-  submitHandler() {
-    fetch('/api/team/', {
-      method: 'post',
+  submitHandler(): void {
+    fetch("/api/team/", {
+      method: "post",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
       },
       body: qs.stringify({
         team_name: this.state.nameString,
         image_url: this.state.imageUrl
       })
     })
-      .then((res) => {
-        if (res.status == 'ok') {
-          this.setState({
-            imageLoaded: false,
-            nameString: '',
-            imageUrl: ''
-          });
-        }
+      .then(res => {
+        this.setState({
+          imageLoaded: false,
+          nameString: "",
+          imageUrl: ""
+        });
       })
       .catch(rej => console.error(rej));
   }
@@ -55,10 +60,10 @@ const Teams = class extends Component {
         />
 
         <Uploader
-          id="file"
+          value="value"
           name="file"
           width="100%"
-          onChange={(file) => {
+          onChange={file => {
             if (file) {
               file.done(info => this.setState({ imageLoaded: true }));
             }
@@ -68,9 +73,7 @@ const Teams = class extends Component {
 
         <button
           type="button"
-          disabled={
-            !this.state.imageLoaded || !this.state.nameString.length > 0
-          }
+          disabled={!this.state.imageLoaded || !this.state.nameString.length}
           onClick={this.submitHandler}
         >
           Сохранить
