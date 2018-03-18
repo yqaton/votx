@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "react", // use typescript to transpile jsx to js
+    "target": "es5", // specify ECMAScript target version
+    "module": "ESNext", // specify module code generation
+    "outDir": "./dist/", // path to output directory
+    "allowJs": true, // allow a partial TypeScript and JavaScript codebase
+    "sourceMap": true, // allow sourcemap support
+    // "noImplicitAny": true, // no any
+    "moduleResolution": "node",
+    "strictNullChecks": true, // enable strict null checks as a best practice
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es6", "dom"],
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
+  },
+  "include": ["./src/"],
+  "exclude": ["node_modules"]
+}

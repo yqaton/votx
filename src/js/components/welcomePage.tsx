@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import styled from 'styled-components';
-import { colours } from '../utils/colours';
+import React, { Component, DOMElement, FormEvent, SyntheticEvent } from "react";
+import { Redirect } from "react-router-dom";
+import styled from "../theme";
+import { colours } from "../utils/colours";
 
 const SessionInputCard = styled.section`
   display: flex;
@@ -42,13 +42,19 @@ const FullHeightWraper = styled.section`
   align-items: center;
   justify-content: center;
 `;
+interface Props {
+  sessionId?: string;
+}
 
-class NoIdInput extends Component {
-  constructor(props) {
+class WelcomePage extends Component<
+  Props,
+  { sessionId: string; submited: boolean; canSubmit: boolean }
+> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
-      session_id: '',
+      sessionId: "",
       submited: false,
       canSubmit: false
     };
@@ -56,17 +62,19 @@ class NoIdInput extends Component {
     this.submitHandler = this.submitHandler.bind(this);
   }
 
-  submitHandler(e) {
+  submitHandler(
+    e: FormEvent<HTMLInputElement> | SyntheticEvent<HTMLButtonElement>
+  ) {
     this.setState({ submited: true });
     e.preventDefault();
   }
 
-  changeHandler(e) {
-    this.setState({ session_id: e.target.value });
+  changeHandler(e: FormEvent<HTMLInputElement>) {
+    this.setState({ sessionId: (e.target as HTMLInputElement).value });
 
     if (
-      e.target.value.length >= 4 &&
-      e.target.value.toLowerCase() !== 'admin'
+      (e.target as HTMLInputElement).value.length >= 4 &&
+      (e.target as HTMLInputElement).value.toLowerCase() !== "admin"
     ) {
       this.setState({ canSubmit: true });
     } else {
@@ -85,7 +93,7 @@ class NoIdInput extends Component {
             <input
               onChange={e => this.changeHandler(e)}
               onSubmit={e => this.submitHandler(e)}
-              value={this.state.session_id}
+              value={this.state.sessionId}
               placeholder="XXXX"
               type="text"
             />
@@ -98,11 +106,11 @@ class NoIdInput extends Component {
             </button>
           </SessionInputCard>
         ) : (
-          <Redirect to={`/${this.state.session_id}`} />
+          <Redirect to={`/${this.state.sessionId}`} />
         )}
       </FullHeightWraper>
     );
   }
 }
 
-export default NoIdInput;
+export default WelcomePage;

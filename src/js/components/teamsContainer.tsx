@@ -1,14 +1,16 @@
-import React, { Component, Fragment } from 'react';
-import 'whatwg-fetch';
+import React, { Component, Fragment } from "react";
+import "whatwg-fetch";
 
-import TeamCard from './teamCard';
+import TeamCard from "./teamCard";
+import { ITeam } from "./teamCard";
 
-const fch = id => fetch(`https://reqres.in/api/users/${id}`);
+const fch = (id: String | Number): Promise<Response> =>
+  fetch(`https://reqres.in/api/users/${id}`);
 
-class Teams extends Component {
-  constructor(props) {
+class Teams extends Component<{}, { teams: ITeam[]; canVote: Boolean }> {
+  constructor(props: {}) {
     super(props);
-    console.log(props);
+
     this.state = {
       teams: [],
       canVote: true
@@ -21,12 +23,12 @@ class Teams extends Component {
   }
   componentDidMount() {
     const teams = this.state.teams;
-    const saveTeam = teams => this.setState({ teams });
+    const saveTeam = (teams: ITeam[]): void => this.setState({ teams });
 
-    [1, 2].forEach((e) => {
+    [1, 2].forEach(e => {
       fch(e)
         .then(res => res.json())
-        .then((json) => {
+        .then(json => {
           teams.push(json.data);
 
           if (teams.length > 1) saveTeam(teams);
@@ -44,7 +46,7 @@ class Teams extends Component {
       />
     ));
 
-    return <Fragment>{result.length > 0 ? result : 'Loading'}</Fragment>;
+    return <Fragment>{result.length > 0 ? result : "Loading"}</Fragment>;
   }
 }
 

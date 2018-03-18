@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { colours } from '../../utils/colours';
+import { colours } from "../../utils/colours";
 
 const Button = styled.button`
   padding: 10px 15px;
@@ -9,9 +9,14 @@ const Button = styled.button`
   background-color: ${colours.indigo};
   color: white;
   border: none;
+  cursor: pointer;
 
   &:hover {
     filter: saturate(2);
+  }
+
+  &:disabled {
+    background-color: gray;
   }
 
   a {
